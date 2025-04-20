@@ -3,51 +3,55 @@
   const data = GetClothes();
 </script>
 <template>
-  <header>
-    <img src="./assets/images/neforgi-removebg-preview.png" class="logo" id="logo1"/>
-    <hr class="line"/>
-    <div class="menu">
-      <a class="menuLink">ХУДИ</a>
-      <a class="menuLink">АКСЕССУАРЫ</a>
-      <a class="menuLink">КРОССОВКИ</a>
-      <a class="menuLink">ШТАНЫ</a>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <RouterLink to="/" class="navbar-brand">
+      <img src="./assets/images/neforgi-removebg-preview.png" class="bi me-2" aria-hidden="true" id="logo1" />
+    </RouterLink>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <RouterLink to="#" class="nav-link">ХУДИ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">АКСЕССУАРЫ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">КРОССОВКИ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">ШТАНЫ</RouterLink>
+      </li>
+      </ul>
     </div>
-  </header>
-  <div class="imageContainer">
-    <img src="./assets/images/bg (Пользовательское).png" class="backgroundImage"/>
-  </div>
-  <div class="container">
-    <hr class="textLine" id="textLine1"/>
-    <p>ПОПУЛЯРНОЕ</p>
-    <hr class="textLine" id="textLine1"/>
-  </div>
-  <div class="clothesContainer">
-    <ul class="clothesList">
-      <li v-for="{ id, name, price, pictureUrl } in data" :key="id">
-        <RouterLink to="/catalog/sweatshirts/2">
-          <img :src="pictureUrl" class="itemImg" alt="товар"/>
-        <p class="itemName">{{ name }}</p>
-        <p class="itemPrice">{{ price }} $.</p>
-        </RouterLink>
-    </li>
-    </ul>
-  </div>
-  <footer>
-    <div class="container" id="footerContainer">
-      <hr class="textLine" id="textLine2"/>
+  </nav>
+  <img src="./assets/images/bg (Пользовательское).png" class="img-fluid" alt="Neforgi main"/>
+  <section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div v-for="{id, name, price, pictureUrl} in data" :key="id" class="col mb-5">
+              <div class="card h-100">
+                <RouterLink to="/catalog/sweatshirts/2">
+                  <img :src="pictureUrl" class="card-img-top itemImg" alt="supply"/>
+                  <div class="card-body p-4">
+                    <div class="text-center">
+                      <h5 class="fw-bolder">{{ name }}</h5>
+                      <p class="price">${{ price }}</p>
+                    </div>
+                  </div>
+                </RouterLink>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <footer class="py-5 bg-dark">
+    <div class="container">
       <img src="./assets/images/neforgi-removebg-preview.png" class="logo" id="logo2"/>
-      <hr class="textLine" id="textLine2"/>
-  </div>
-  <div class="footerData" id="footerContainer">
-    <div class="copyrightData">
-      <p class="copyright">© Neforgi.com</p>
-      <p class="copyright">ВСЕ ПРАВА НЕ ЗАЩИЩЕНЫ</p>
     </div>
-    <div class="contacts">
-      <img src="./assets/images/вк.png" class="social"/>
-      <img src="./assets/images/тг.jpg" class="social"/>
-    </div>
-  </div>
   </footer>
 </template>
 <script>

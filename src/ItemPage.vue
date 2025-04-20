@@ -1,48 +1,55 @@
 <template>
-    <header>
-      <img src="./assets/images/neforgi-removebg-preview.png" class="logo" id="logo1"/>
-      <hr class="line"/>
-      <div class="menu">
-        <a class="menuLink">ХУДИ</a>
-        <a class="menuLink">АКСЕССУАРЫ</a>
-        <a class="menuLink">КРОССОВКИ</a>
-        <a class="menuLink">ШТАНЫ</a>
-      </div>
-    </header>
-    <p id="itemName">Свитшот Marselin</p>
-    <div class="itemContainer">
-      <img src="./assets/images/Sweatshirt/43131777.jpg" id="itemImage"/>
-      <div class="itemData">
-        <p id="itemPrice">60 $.</p>
-        <div class="sizeSelector">
-          <button >S</button>
-          <button>M</button>
-          <button>L</button>
-          <button>XL</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <RouterLink to="/" class="navbar-brand">
+      <img src="./assets/images/neforgi-removebg-preview.png" class="bi me-2" aria-hidden="true" id="logo1" />
+    </RouterLink>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <RouterLink to="#" class="nav-link">ХУДИ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">АКСЕССУАРЫ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">КРОССОВКИ</RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink to="#" class="nav-link">ШТАНЫ</RouterLink>
+      </li>
+      </ul>
+    </div>
+  </nav>
+  <section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6">
+          <img class="card-img-top mb-5 mb-md-0" src="./assets/images/Sweatshirt/43131777.jpg" alt="supply"/>
         </div>
-        <div class="info">
-          <p class="infoText">Состав: 80% хлопок, 20% лайкара</p>
-          <p class="infoText">Оверсайз крой / унисекс</p>
-          <p class="infoText">Отправка в течении 3-14 дней после заказа</p>
+        <div class="col-md-6">
+          <h2 class="display-5 fw-bolder">Свитшот Marselin</h2>
+          <div class="fs-5 mb-5">
+            <span class="text-decoration-line-through">$70</span>
+            <span>$60</span>
+          </div>
+          <p class="lead">Состав: 80% хлопок, 20% лайкара. Оверсайз крой / унисекс. Отправка в течении 3-14 дней после заказа.</p>
+          <div class="d-flex">
+            <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 3rem">
+            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+              <i class="bi-cart-fill me-1"></i>
+              Add to cart
+            </button>
+          </div>
         </div>
-        <button id="buyButton">КУПИТЬ</button>
       </div> 
     </div>
-    <footer>
-    <div class="container" id="footerContainer">
-      <hr class="textLine" id="textLine2"/>
+  </section>
+  <footer class="py-5 bg-dark">
+    <div class="container">
       <img src="./assets/images/neforgi-removebg-preview.png" class="logo" id="logo2"/>
-      <hr class="textLine" id="textLine2"/>
-  </div>
-  <div class="footerData" id="footerContainer">
-    <div class="copyrightData">
-      <p class="copyright">© Neforgi.com</p>
-      <p class="copyright">ВСЕ ПРАВА НЕ ЗАЩИЩЕНЫ</p>
     </div>
-    <div class="contacts">
-      <img src="./assets/images/вк.png" class="social"/>
-      <img src="./assets/images/тг.jpg" class="social"/>
-    </div>
-  </div>
   </footer>
 </template>
