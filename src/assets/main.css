@@ -61,15 +61,13 @@ p {
   filter: invert();
 }
 
-@media (min-width: 992px) {
-  #logo2 {
-    width: 40%;
-  }
-}
-
 @media (min-width: 768px) and (max-width: 991px) {
   #logo2 {
     width: 60%;
+  }
+  
+  .itemImg {
+  height: 225px;
   }
 }
 
@@ -77,4 +75,8 @@ p {
   #logo2 {
     width: 80%;
   }
-}
+  
+  .itemImg {
+  height: 200px;
+  }
+  }
