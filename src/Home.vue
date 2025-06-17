@@ -1,50 +1,27 @@
 <script setup>
-import { ref } from 'vue'
-import GetClothes from "./assets/scripts/dataBaseEmulator";
-const data = GetClothes();
+import { ref, onMounted} from 'vue';
+import axios from 'axios';
 
-const name = ref('');
-const email = ref('');
-const comment = ref('');
+const data = ref([]);
+const error = ref(null);
 
-const sent = ref(false);
-const sentData = ref({
-  name: '',
-  email: '',
-  comment: ''
-});
 
-function validateEmail(value) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(value)
-}
-
-function handleSubmit() {
-  if (!name.value.trim() || !comment.value.trim()) {
-    alert("Поля «Имя» и «Комментарий» не могут быть пустыми.")
-    return
+onMounted(async () => {
+  try {
+    const resp = await axios.get('/api/products')
+    data.value = resp.data
+  } catch (e) {
+    error.value = e
+    console.error('Не удалось загрузить продукты', e)
   }
-  if (email.value && !validateEmail(email.value)) {
-    alert("Email введён некорректно.")
-    return
-  }
-
-  sentData.value = {
-    name: name.value,
-    email: email.value,
-    comment: comment.value
-  }
-  sent.value = true
-  alert("Успешно отправлено!")
-
-  name.value = ''
-  email.value = ''
-  comment.value = ''
-}
+})
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div v-if="error">
+    Ошибка загрузки: {{ error.message }}
+  </div>
+  <div v-else><nav class="navbar navbar-expand-lg navbar-light bg-light">
     <RouterLink to="/" class="navbar-brand">
       <img src="./assets/images/neforgi-removebg-preview.png" class="bi me-2" aria-hidden="true" id="logo1" />
     </RouterLink>
@@ -86,23 +63,23 @@ function handleSubmit() {
   <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <div
-          v-for="{ id, name: itemName, price, pictureUrl } in data"
-          :key="id"
-          class="col mb-5"
-        >
-          <div class="card h-100">
-            <RouterLink :to="`/catalog/sweatshirts/${id}`">
-              <img :src="pictureUrl" class="card-img-top itemImg" alt="supply" />
-              <div class="card-body p-4">
-                <div class="text-center">
-                  <h5 class="fw-bolder">{{ itemName }}</h5>
-                  <p class="price">${{ price }}</p>
-                </div>
-              </div>
-            </RouterLink>
+         <div
+      v-for="{ id, name, price, imageUrl } in data"
+      :key="id"
+      class="col mb-5"
+    >
+      <div class="card h-100">
+        <RouterLink :to="`/catalog/sweatshirts/${id}`">
+          <img :src="imageUrl" class="card-img-top itemImg" alt="item" />
+          <div class="card-body p-4">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{ name }}</h5>
+              <p class="price">${{ price }}</p>
+            </div>
           </div>
-        </div>
+        </RouterLink>
+      </div>
+    </div>
       </div>
     </div>
   </section>
@@ -160,7 +137,7 @@ function handleSubmit() {
     <div class="container">
       <img src="./assets/images/neforgi-removebg-preview.png" class="logo" id="logo2" />
     </div>
-  </footer>
+  </footer></div>
 </template>
 
 <script>

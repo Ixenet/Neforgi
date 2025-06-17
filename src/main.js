@@ -7,13 +7,18 @@ import Home from './Home.vue';
 import ItemPage from './ItemPage.vue';
 
 const routes = [
-    {path: '/', component: Home},
-    {path: '/catalog/sweatshirts/2', component: ItemPage},
-];
+  { path: '/', component: Home },
+  {
+    path: '/catalog/sweatshirts/:id',
+    component: ItemPage,
+    props: true
+  }
+]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes,
+  history: createWebHistory(),
+  routes
 })
 
 createApp(App).use(router).mount('#app')
+export default router
